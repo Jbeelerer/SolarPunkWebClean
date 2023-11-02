@@ -1,22 +1,31 @@
 import "./App.css";
+import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 //import QrReader from "./Components/CustomQrReader";
-import Form1 from "./Components/FormWorktime";
 import Character from "./Components/Character";
 import BottomDrawer from "./Components/BottomDrawer";
 
 export default function App() {
-  /*
-      <p><BasicForm/></p>
-  <FirebaseIntegration/>
-   <Form1/>
-
-    */
-
+  const [showTitleScreen, setShowTitleScreen] = useState(true);
+  const [introOver, setIntroOver] = useLocalStorageState("introOver");
   return (
     <>
-      <Character />
-      <BottomDrawer />
+      {showTitleScreen ? (
+        <>
+          <div className="startContainer">
+            <div className="startTitle">Willkommen</div>
+            <button className="start" onClick={() => setShowTitleScreen(false)}>
+              Start
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <Character />
+          <BottomDrawer />
+        </>
+      )}
     </>
   );
 }

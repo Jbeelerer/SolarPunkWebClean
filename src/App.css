@@ -1,10 +1,27 @@
+@font-face {
+  font-family: regular;
+  src: url("/src/assets/PlusJakartaSans-Light.ttf");
+}
+@font-face {
+  font-family: title;
+  src: url("/src/assets/PlusJakartaSans-Bold.ttf");
+}
+
+html{
+  padding-right: 0 !important;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  /*padding: 2rem;*/
   text-align: center;
+  background-color: white; 
 }
-
+body{
+  background-color: white;
+  margin: 0;  
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -37,27 +54,38 @@
   padding: 2em;
 }
 
+.react-modal-sheet-content{
+  color: black;
+  font-family: "regular";
+  font-size: 15px; 
+  padding: 0 10%;
+}
+.react-modal-sheet-content .MainTitle{
+  font-family: "title";
+  font-size: 25px;
+}
+
 .read-the-docs {
   color: #888;
 }
 .QRCodeContainer{
-  width: 50%;
-  margin: -100px auto 0 auto; 
+  text-align: right;
+  /*margin: -100px auto 0 auto; */
 }
 .QRCodeContainer.isOpen{ 
-  margin: -250px auto 0 auto; 
+ /* margin: -250px auto 0 auto; */
 }
-.QRCodeContainer.isOpen video{ 
-  display: block;
-}
-.QRCodeContainer video{
+.qrWindow video{
   display: none;
-}
-.QRCodeButton{
   width: 100%;
-  background-color: white;
-  color: black; 
-  border: none;
+  height: 80vw;  
+    margin: auto; 
+    border-radius: 20px;
+    object-fit: cover;
+    margin-bottom: 50px;
+}  
+.isOpen video{ 
+  display: block;
 }
 .QRCodeButton video{
   width: 100%;
@@ -75,10 +103,55 @@
 .QRCode div{
   padding-top: 50%;
 }
-.QRCodeButton{
-  
+/*.QRCodeButton{*/
+  button{
+  background-color: #D0B99E;
+  color: white; 
+  border-radius: 40px;
+  border: none;
+  font-size: 21px; 
+  width: 130px;
+  padding: 10px 20px;
+  margin-right: 7%; 
+  position: absolute; 
+  bottom: 20px;
+  right: 0;
+  text-align: left; 
+  background-position: 90px;
+  background-repeat: no-repeat;
+  background-image: url("/src/assets/Icons/icon-arr-right.svg");
 }
-.Character div{
+
+.QRCodeButton.idle{    
+  position: absolute;
+  top: -100px; 
+  bottom: unset;
+  width: 40%;
+  left: 30%;
+  background-position: 110px;
+  background-image: url("/src/assets/Icons/icon-scan.svg");
+}
+
+.isOpen .QRCodeButton{
+  /*color: gray;*/
+  background-color: unset;
+  border: solid 1px black;
+  background-image: url("/src/assets/Icons/icon-cancle-black.svg");
+  filter: invert(80%) sepia(21%) saturate(327%) hue-rotate(352deg) brightness(90%) contrast(94%);
+  background-repeat: no-repeat;
+  background-size: 25%;
+  background-position: center;  
+  width: unset;
+  width: 40px;
+  height: 40px;
+  right: calc(50% - 40px); 
+/*  position: absolute;
+  top: -100px;
+  width: 33%; 
+  left: 33%;
+  bottom: unset; */
+}
+.Character div{   
   height: 100vh !important;
   width: 100% !important;
 }
@@ -94,6 +167,311 @@ color: black;
 
 .infoForm{
   color: black;
+  width: 100%;
+  margin: 0 auto 10px auto; 
+  font-size: 11px;
+}
+.rangeDisplay{
+  display: inline-block;
+  position: absolute;
+  color: #D0B99E;
+  border: solid 1px;
+  padding: 1px 3px;
+  border-radius: 5px;
+  left: 10px;
+  font-family: "title";
+  bottom: -10px;
+}
+.rangeDisplayContainer{    
+  white-space: nowrap;
+  position: relative;
+  width: 85%;
+}
+
+.infoForm .range-slider{
+  margin: 50px 0;
+}
+
+.infoForm .range-slider__thumb[data-lower] {
+  width: 8px;
+  height: 8px;
+  border-radius: 10px; 
+}  
+
+.infoForm .range-slider__thumb[data-upper] {
+  background-image: url("../src/assets/icon-bike.svg"); 
+  background-color: transparent;
+  width: 40px;
+  height: 60px;
+  border-radius: 0px;
+  background-repeat: no-repeat;
+  background-size: contain;  
+}  
+
+.infoForm .walking.range-slider__thumb[data-upper] {
+  background-image: url("../src/assets/icon-walk.svg") !important;  
+}
+
+.infoForm input[type=range]{
+  width: 100%;
+}
+
+
+
+/********** Range Input Styles **********/
+/*Range Reset*/
+input[type="range"] {
+  margin: 25px 0;  
+  -webkit-appearance: none;
+   appearance: none;
+   background: transparent;
+   cursor: pointer;
+   width: 15rem;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+ outline: none;
+}
+
+/***** Chrome, Safari, Opera and Edge Chromium styles *****/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #E5DCD0;
+  border-radius: 0.5rem; 
+  height: 0.3rem;   
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+ -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -7px; 
+  /*custom styles*/
+  background-color: transparent;    
+  background-repeat: no-repeat;
+  background-size: cover;  
+  width: 20px;
+  height: 20px;  
+  background-image: url("assets/slider-handle.png");  
+  border-radius: 0;
+}
+.Form2{
+  margin-top: 10px !important;
+}
+.infoForm.Form2 input[type="range"]::-webkit-slider-thumb {
+  margin-top: -12px; /* Centers thumb on the track */
+  background-color: transparent;
+  background-size: contain;
+  width: 30px;
+  height: 60px;
+  border-radius: 0px;
+}
+
+.infoForm input[type="range"].walking::-webkit-slider-thumb {
+  background-image: url("../src/assets/icon-walk.svg") !important;
+}
+
+.infoForm input[type="range"].bicicle::-webkit-slider-thumb { 
+  background-image: url("../src/assets/icon-bike.svg") !important;
+}
+.infoForm input[type="range"].publicTransport::-webkit-slider-thumb { 
+  background-image: url("../src/assets/icon-bus.svg") !important;
+}
+.infoForm input[type="range"].car::-webkit-slider-thumb { 
+  background-image: url("../src/assets/icon-car.svg") !important;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {   
+ border: 1px solid #053a5f;
+ outline: 3px solid #053a5f;
+ outline-offset: 0.125rem; 
+}
+
+/******** Firefox styles ********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: #8bc8f3;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 0; /*Removes default border-radius that FF applies*/
+
+  /*custom styles*/
+  background-color: #D0B99E;   
+  width: 40px;
+  height: 60px;
+  border-radius: 0px;
+  background-repeat: no-repeat;   
+  background-size: contain;  
+}
+
+input[type="range"].bicicle::-moz-range-thumb {
+  background-image: url("../src/assets/e-bike\ 2.png");  
+  background-color: transparent;
+}
+input[type="range"].walking::-moz-range-thumb {
+  background-image: url("../src/assets/stick-man-walking\ 1.png"); 
+  background-color: transparent; 
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+ border: 1px solid #053a5f;
+ outline: 3px solid #053a5f;
+ outline-offset: 0.125rem; 
+}
+
+/*WorkerForm*/
+.stackContainer{
+  display:  inline-block;
+  width: 33.33%; 
+  text-align: center;
+}
+.stack{
+  display: block;
+  margin: 1px auto;
+  background-color: #D0B99E;
+  width: 70%; 
+  height: 4px;
+  border-radius: 2px;
+}
+
+.workDisplay{
+  width: 100%;
+  margin: 25px auto 0 auto;
+}
+
+.workerIcon{
+  display:  inline-block;
+  background-image: url("../src/assets/work-icon-person.png"); 
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  width: 30%; 
+  height: 100px; 
+}
+
+.table{
+  height: 15px;
+  background-color: #D0B99E;
+  border-radius: 10px;
+  margin: 0 auto 30px auto;
+}
+
+.energyDisplaySelection{
+  font-size: 21px;
+  padding: 6px 0 6px 15%; 
+  width: 85%;
+  display: block;
+  margin: 10px auto;
+  border: solid 1px #D0B99E;  
+  color:#D0B99E;
+  border-radius: 10px;
+  background-image: url("/src/assets/Icons/icon-solar.svg");
+  background-position-x: 10px;
+  background-position-y: center;
+  background-repeat: no-repeat;  
+}
+#windEnergy.energyDisplaySelection{
+  background-image: url("/src/assets/Icons/icon-wind.svg");
+}
+#waterEnergy.energyDisplaySelection{
+  background-image: url("/src/assets/Icons/icon-water.svg");
+}
+#windEnergy.energyDisplaySelection{
+  background-image: url("/src/assets/Icons/icon-wind.svg");
+}
+#erdeEnergy.energyDisplaySelection{
+  background-image: url("/src/assets/Icons/icon-earth.svg");
+}
+#windEnergy.energyDisplaySelection.selected{
+  background-image: url("/src/assets/Icons/icon-light-wind.svg");
+}
+#waterEnergy.energyDisplaySelection.selected{
+  background-image: url("/src/assets/Icons/icon-light-water.svg");
+}
+#windEnergy.energyDisplaySelection.selected{
+  background-image: url("/src/assets/Icons/icon-light-wind.svg");
+}
+#erdeEnergy.energyDisplaySelection.selected{
+  background-image: url("/src/assets/Icons/icon-light-earth.svg");
+}
+.energyDisplaySelection.selected{
+  background-color: #D0B99E;
+  color:white; 
+}
+
+.energyDisplaySelection.selected{
+  background-image: url("/src/assets/Icons/icon-light-solar.svg");
+}
+
+
+.pagenumberContainer{
+  justify-content: flex-start;
+  width: auto;
+  height: 44px;
+  display: flex;
+  margin-left: 7%;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  -ms-flex-item-align: center;
+
+}
+.pagenumberContainer div{
+  margin: 10px; 
+  padding: 2px;
+  font-size: 13px;
+  text-align: center;
+  font-family: "title";
+  background-color: white; 
+  color: #D0B99E;
+  border: solid 1px #D0B99E; 
+  border-radius: 40px;
+  width: 20px;
+  height: 20px;
+}
+
+.pagenumberContainer div.active{
+  background-color: #D0B99E; 
+  color: white;
+}
+
+input[type="text"]{
   width: 90%;
-  margin: auto;
+  background-color: white;
+  border: 1px solid #D0B99E;  
+  color: #D0B99E;  
+  padding: 10px 5%;
+  border-radius: 10px;
+}
+::placeholder {
+  color: #D0B99E; 
+  opacity: 0.5; /* Firefox */
+}
+
+
+/*start Screen*/
+.startContainer{
+  height: 100vh;
+  background-color: #D0B99E;
+}
+
+.startContainer .startTitle{
+  font-size: 35px;
+  font-family: "title"; 
+  position: absolute;
+  bottom: 150px;
+  width: 100%;
+  text-align: center; 
+}
+.startContainer .start{
+  background-image: url("assets/Icons/icon-rocket.svg");
+  border: white solid 1px;
+  left: calc(50% - 65px) !important;   
+  bottom: 80px; 
 }
