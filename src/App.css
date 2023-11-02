@@ -447,7 +447,8 @@ input[type="text"]{
   border: 1px solid #D0B99E;  
   color: #D0B99E;  
   padding: 10px 5%;
-  border-radius: 10px;
+  border-radius: 10px; 
+  font-size: 17px;
 }
 ::placeholder {
   color: #D0B99E; 
