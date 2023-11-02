@@ -57,11 +57,11 @@ body{
 .react-modal-sheet-content{
   color: black;
   font-family: "regular";
-  font-size: 17px; 
+  font-size: 15px; 
   padding: 0 10%;
 }
 .react-modal-sheet-content .MainTitle{
-  font-family: "title";
+  font-family: "title"; 
   font-size: 25px;
 }
 
