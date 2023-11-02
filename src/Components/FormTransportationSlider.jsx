@@ -16,8 +16,8 @@ function FormTransportationSlider({ transportType }) {
     var output = document.getElementById(transportType + "div");
     let key = transportType + "";
     setTransportation({ ...transportation, [key]: rangeval });
-    console.log(output);
-    // output.value = vol;
+    console.log(vol);
+    console.log((output.style.left = (vol / maxVal) * 100 + "%"));
     if (output != null) output.style.left = (vol / maxVal) * 100 + "%";
   }
   /*<RangeSlider
@@ -44,6 +44,7 @@ function FormTransportationSlider({ transportType }) {
         max={maxVal}
         onChange={(event) => setRangeval(event.target.value)}
         onInput={() => outputUpdate(rangeval)}
+        onClick={outputUpdate(rangeval)}
       />
     </>
   );

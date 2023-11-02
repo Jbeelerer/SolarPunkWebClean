@@ -11,7 +11,7 @@ export function QrReader({ onFormChange, onOpenQR, idleMode, setIdleMode }) {
   const { ref } = useZxing({
     onDecodeResult(result) {
       setText(result.getText());
-      onFormChange(text);
+      onFormChange(result.getText());
       setdisplayQR(false);
     },
   });
