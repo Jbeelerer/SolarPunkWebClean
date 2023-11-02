@@ -93,7 +93,7 @@ const FormSwitch = (test) => {
           <InfoText
             title={"Arbeits-/Schulweg"}
             text={
-              "Wie setzt sich dein Arbeits-/Schulweg aktuell zusammen? Mit welchem Fortbewegungsmittel legst du wie viel Zeit zurück?"
+              "Mit welchem Fortbewegungsmittel legst du wie viel Zeit zurück?"
             }
           />
           <FormTransportation />
