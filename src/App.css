@@ -16,10 +16,10 @@ html{
   margin: 0 auto;
   /*padding: 2rem;*/
   text-align: center;
-  background-color: white; 
+  background-color: rgba(255, 255, 255, 0) !important;
 }
 body{
-  background-color: white;
+ /* background-color: white;*/ 
   margin: 0;  
 }
 .logo {
@@ -71,18 +71,23 @@ body{
 .QRCodeContainer{
   text-align: right;
   /*margin: -100px auto 0 auto; */
+
+   position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 100; 
+    z-index: 10000000;
 }
 .QRCodeContainer.isOpen{ 
  /* margin: -250px auto 0 auto; */
 }
 .qrWindow video{
-  display: none;
-  width: 100%;
-  height: 80vw;  
-    margin: auto; 
+  display: none;    
+  width: 30vh;
+  height: 30vh;
+  margin: 3vh auto;
     border-radius: 20px;
-    object-fit: cover;
-    margin-bottom: 50px;
+    object-fit: cover; 
 }  
 .isOpen video{ 
   display: block;
@@ -114,7 +119,7 @@ body{
   padding: 10px 20px;
   margin-right: 7%; 
   position: absolute; 
-  bottom: 20px;
+  bottom: 15px;
   right: 0;
   text-align: left; 
   background-position: 90px;
@@ -124,8 +129,6 @@ body{
 
 .QRCodeButton.idle{    
   position: absolute;
-  top: -100px; 
-  bottom: unset;
   width: 40%;
   left: 30%;
   background-position: 110px;
@@ -180,7 +183,7 @@ color: black;
   border-radius: 5px;
   left: 10px;
   font-family: "title";
-  bottom: -10px;
+  bottom: -20px; 
 }
 .rangeDisplayContainer{    
   white-space: nowrap;
@@ -221,7 +224,7 @@ color: black;
 /********** Range Input Styles **********/
 /*Range Reset*/
 input[type="range"] {
-  margin: 25px 0;  
+  margin: 35px 0;  
   -webkit-appearance: none;
    appearance: none;
    background: transparent;
@@ -364,7 +367,7 @@ input[type="range"]:focus::-moz-range-thumb {
 
 .energyDisplaySelection{
   font-size: 21px;
-  padding: 6px 0 6px 15%; 
+  padding: 3px 0 3px 15%;  
   width: 85%;
   display: block;
   margin: 10px auto;
@@ -417,7 +420,7 @@ input[type="range"]:focus::-moz-range-thumb {
   display: flex;
   margin-left: 7%;
   position: absolute;
-  bottom: 20px;
+  bottom: 15px;
   left: 0;
   -ms-flex-item-align: center;
 
@@ -475,4 +478,8 @@ input[type="text"]{
   border: white solid 1px;
   left: calc(50% - 65px) !important;   
   bottom: 80px; 
+}
+
+.react-modal-sheet-backdrop{
+  background-color: rgba(255, 255, 255, 0) !important; 
 }

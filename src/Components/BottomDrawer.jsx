@@ -1,9 +1,8 @@
 import Sheet from "react-modal-sheet";
-//import QrReader from "./CustomQrReader";
 import { QrReader } from "./CustomQrReaderZxing";
-
 import { useContext, useState } from "react";
 import { QRCodeFormContext } from "./QRCodeFormContext";
+import { MainButton } from "./MainButton";
 // import for some reason not working :/
 //import { FormSwitch } from "./FormSwitch";
 import Send from "./Send";
@@ -12,56 +11,50 @@ import FormTransportation from "../Components/FormTransportation";
 import WorkForm from "../Components/Work";
 import FormEnergy from "./FormEnergy";
 import FormName from "./FormName";
+import { DisplayMode } from "./DisplayMode.jsx";
 
 export default function BottomDrawer() {
   const QRCodeContext = useContext(QRCodeFormContext);
   const [isOpen, setOpen] = useState(true);
   const [formContent, setFormContent] = useState("0");
-  const [initialSnapP, setInitialSnapP] = useState(0);
-  const [idleMode, setIdleMode] = useState(false);
-
-  /*const onFormChange = (e) => {
-    console.log(e); 
-    //setFormContent({ newContent });
-  };
-  
-  
-  function onFormChange(content) {
-    console.log(content);
-    setFormContent({ newContent });
-  }
-  */
+  const [initialSnapP, setInitialSnapP] = useState(1);
+  const [displayMode, setDisplayMode] = useState(DisplayMode.displayForm);
 
   function onFormChange(content) {
     console.log(content);
+    setDisplayMode(DisplayMode.displayForm);
+    setOpen(true);
+    if (content == "Transportation") {
+      setInitialSnapP(0);
+    } else if (content == "Send") {
+      setInitialSnapP(4);
+    }
     setFormContent(content);
   }
 
-  function onOpenQR(b) {
+  function onOpenQR() {
     setFormContent("QRCode");
-    setIdleMode(false);
+    setDisplayMode(DisplayMode.displayQR);
   }
 
-  function manageIdleMode(val) {
-    setIdleMode(val);
-    setInitialSnapP(val ? 3 : 0);
+  function manageDisplayMode(val) {
+    setDisplayMode(val);
+    setInitialSnapP(val == DisplayMode.idle ? 4 : 1);
     setOpen(false);
     setOpen(true);
   }
-  //<button onClick={() => setOpen(true)}>Open sheet</button>
   return (
     <>
+      {console.log(displayMode)}
       <Sheet
-        snapPoints={[0.6, 0.3, 0.1, 0]}
+        snapPoints={[0.8, 0.6, 0.3, 0.1, 0]}
         initialSnap={initialSnapP}
-        isOpen={isOpen}
+        isOpen={displayMode != DisplayMode.idle}
         onSnap={(snapIndex) =>
           console.log("> Current snap point index:", snapIndex)
         }
         onClose={() => {
-          setIdleMode(true);
-          console.log("doNothing");
-          // setOpen(true);
+          setDisplayMode(DisplayMode.idle);
         }}
       >
         <Sheet.Container>
@@ -70,15 +63,18 @@ export default function BottomDrawer() {
             <FormSwitch data={formContent} />
             <QrReader
               onFormChange={onFormChange}
-              onOpenQR={onOpenQR}
-              idleMode={idleMode}
-              setIdleMode={manageIdleMode}
+              showQr={formContent == "QRCode"}
             />
-            {/* Your sheet content goes here */}
           </Sheet.Content>
         </Sheet.Container>
         <Sheet.Backdrop />
       </Sheet>
+      <MainButton
+        onFormChange={onFormChange}
+        onOpenQR={onOpenQR}
+        displayMode={displayMode}
+        setDisplayMode={manageDisplayMode}
+      />
     </>
   );
 }

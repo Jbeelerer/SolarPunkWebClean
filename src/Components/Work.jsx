@@ -26,6 +26,7 @@ function WorkForm() {
         document.getElementById(v).value;
     }
   };
+  /*
   function outputUpdate(vol) {
     var output = document.getElementById("workingHours");
     setWorkingHours(rangeval);
@@ -33,6 +34,13 @@ function WorkForm() {
     if (output != null)
       output.style.left =
         rangeval <= 1 ? "0px" : (rangeval / maxVal) * 100 + "%";
+  } 
+*/
+  function outputUpdate(vol) {
+    var output = document.getElementById("workingHours");
+    setWorkingHours(rangeval);
+    console.log((rangeval / maxVal) * 100 + "%");
+    if (output != null) output.style.left = (rangeval / maxVal) * 100 + "%";
   }
 
   let stack1 = [];
@@ -70,6 +78,7 @@ function WorkForm() {
             max={maxVal}
             onChange={(event) => setRangeval(event.target.value)}
             onInput={() => outputUpdate(rangeval)}
+            onClick={outputUpdate(rangeval)}
           />
         </form>
       </div>

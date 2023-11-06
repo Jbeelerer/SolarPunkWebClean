@@ -11,7 +11,7 @@ function FormTransportationSlider({ EnergyType }) {
   const [energyType, setEnergyType] = useLocalStorageState("energyType");
   function selectType() {
     setChecked(!checked);
-    setEnergyType({ ...energyType, [key]: checked });
+    setEnergyType({ ...energyType, [EnergyType + "EnergyCheckbox"]: !checked });
   }
 
   return (
