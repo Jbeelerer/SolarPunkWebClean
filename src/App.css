@@ -134,6 +134,9 @@ body{
   background-position: 110px;
   background-image: url("/src/assets/Icons/icon-scan.svg");
 }
+.QRCodeButton.closed{
+  background-image: url("/src/assets/Icons/icon-draw.svg");
+}
 
 .isOpen .QRCodeButton{
   /*color: gray;*/

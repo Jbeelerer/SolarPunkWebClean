@@ -39,7 +39,9 @@ export default function BottomDrawer() {
 
   function manageDisplayMode(val) {
     setDisplayMode(val);
+    console.log(val);
     setInitialSnapP(val == DisplayMode.idle ? 4 : 1);
+    console.log(initialSnapP);
     setOpen(false);
     setOpen(true);
   }
@@ -49,12 +51,18 @@ export default function BottomDrawer() {
       <Sheet
         snapPoints={[0.8, 0.6, 0.3, 0.1, 0]}
         initialSnap={initialSnapP}
-        isOpen={displayMode != DisplayMode.idle}
+        isOpen={
+          displayMode != DisplayMode.idle && displayMode != DisplayMode.closed
+        }
         onSnap={(snapIndex) =>
           console.log("> Current snap point index:", snapIndex)
         }
         onClose={() => {
-          setDisplayMode(DisplayMode.idle);
+          if (displayMode == DisplayMode.displayForm) {
+            setDisplayMode(DisplayMode.closed);
+          } else {
+            setDisplayMode(DisplayMode.idle);
+          }
         }}
       >
         <Sheet.Container>

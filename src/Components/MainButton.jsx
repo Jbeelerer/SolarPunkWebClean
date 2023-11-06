@@ -37,7 +37,10 @@ export function MainButton({
           onClick={() => {
             console.log(displayMode);
             increaseNumber();
-            if (displayMode == DisplayMode.displayQR) {
+
+            if (displayMode == DisplayMode.closed) {
+              setDisplayMode(DisplayMode.displayForm);
+            } else if (displayMode == DisplayMode.displayQR) {
               console.log("clooose");
               setDisplayMode(DisplayMode.idle);
             } else {
@@ -62,6 +65,8 @@ export function MainButton({
           className={
             displayMode == DisplayMode.idle
               ? "idle QRCodeButton"
+              : displayMode == DisplayMode.closed
+              ? "QRCodeButton closed"
               : "QRCodeButton"
           }
         >
@@ -69,6 +74,8 @@ export function MainButton({
             ? "Scannen"
             : displayMode == DisplayMode.displayForm
             ? "Weiter"
+            : displayMode == DisplayMode.closed
+            ? "Öffnen"
             : ""}
         </button>
       </div>
