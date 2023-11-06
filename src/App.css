@@ -84,8 +84,8 @@ body{
 .qrWindow video{
   display: none;    
   width: 30vh;
-  height: 30vh;
-  margin: 3vh auto;
+  height: 30vh; 
+  margin: 2vh auto;
     border-radius: 20px;
     object-fit: cover; 
 }  
