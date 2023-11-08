@@ -5,47 +5,19 @@ import FormTransportationSlider from "./FormTransportationSlider";
 import useLocalStorageState from "use-local-storage-state";
 
 function WorkForm() {
-  /*
-      <p><BasicForm/></p>
-  <FirebaseIntegration/>
-    */
-
   const maxVal = 18;
   const [rangeval, setRangeval] = useState(0);
-  const [isSend, setIsSend] = useState(false);
   const [workingHours, setWorkingHours] = useLocalStorageState("workingHours");
 
-  const submithandler = async (e) => {
-    e.preventDefault();
-    setIsSend(true);
-  };
-  var changeHandler = (v) => {
-    if (v != null) {
-      //setWorkingHours(document.getElementById(v).value);
-      document.getElementById(v + "Amount").value =
-        document.getElementById(v).value;
-    }
-  };
-  /*
   function outputUpdate(vol) {
     var output = document.getElementById("workingHours");
     setWorkingHours(rangeval);
-    // output.value = vol;
-    if (output != null)
-      output.style.left =
-        rangeval <= 1 ? "0px" : (rangeval / maxVal) * 100 + "%";
-  } 
-*/
-  function outputUpdate(vol) {
-    var output = document.getElementById("workingHours");
-    setWorkingHours(rangeval);
-    console.log((rangeval / maxVal) * 100 + "%");
     if (output != null) output.style.left = (rangeval / maxVal) * 100 + "%";
   }
 
   let stack1 = [];
   let stack2 = [];
-  //first work stack
+
   for (let i = 0; i < rangeval; i++) {
     if (i % 2 == 0) {
       stack1[i] = createElement("div", { className: "stack" });

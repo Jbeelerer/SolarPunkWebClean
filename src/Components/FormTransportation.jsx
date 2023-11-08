@@ -5,22 +5,13 @@ import FormTransportationSlider from "./FormTransportationSlider";
 import useLocalStorageState from "use-local-storage-state";
 
 function FormTransportation() {
-  /*
-      <p><BasicForm/></p>
-  <FirebaseIntegration/>
-    */
   const [isSend, setIsSend] = useState(false);
 
   const submithandler = async (e) => {
     e.preventDefault();
     setIsSend(true);
   };
-  var changeHandler = (v) => {
-    if (v != null) {
-      document.getElementById(v + "Amount").value =
-        document.getElementById(v).value;
-    }
-  };
+
   return (
     <>
       {!isSend ? (

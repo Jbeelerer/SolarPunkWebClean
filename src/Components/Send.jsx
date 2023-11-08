@@ -10,21 +10,13 @@ function FormWorktime() {
   const [name, setName] = useLocalStorageState("name");
   const [workingHours, setWorkingHours] = useLocalStorageState("workingHours");
   const [energyType, setEnergyType] = useLocalStorageState("energyType");
-  /*
-      <p><BasicForm/></p>
-  <FirebaseIntegration/>
-    */
   const dataRef = useRef();
+
   const send = async (e) => {
-    console.log(transportation);
-    console.log(energyType);
     setIsSend(true);
-    //return;
     await set(ref(firebase, "users/" + name), {
       workingHours: workingHours,
-      // transportation: transportation,
       transportation: transportation != null ? { transportation } : {},
-      // energy: energyType,
       energy: energyType != null ? { energyType } : {},
     });
   };

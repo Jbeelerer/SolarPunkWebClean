@@ -35,20 +35,17 @@ export function MainButton({
         )}
         <button
           onClick={() => {
-            console.log(displayMode);
             increaseNumber();
 
             if (displayMode == DisplayMode.closed) {
               setDisplayMode(DisplayMode.displayForm);
             } else if (displayMode == DisplayMode.displayQR) {
-              console.log("clooose");
               setDisplayMode(DisplayMode.idle);
             } else {
               if (!introOver) {
                 if (number < 3) {
                   onFormChange(number);
                   setDisplayMode(DisplayMode.displayForm);
-                  console.log(DisplayMode.displayForm);
                 } else if (number == 3) {
                   onFormChange("name");
                   setDisplayMode(DisplayMode.displayForm);

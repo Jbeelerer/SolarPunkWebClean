@@ -3,7 +3,7 @@ import "react-range-slider-input/dist/style.css";
 import useLocalStorageState from "use-local-storage-state";
 
 function FormTransportationSlider({ transportType }) {
-  var content = "test";
+  var content = "";
   const [rangeval, setRangeval] = useState(0);
   const [transportation, setTransportation] =
     useLocalStorageState("transportation");

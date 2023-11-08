@@ -5,10 +5,6 @@ import FormTransportationSlider from "./FormTransportationSlider";
 import useLocalStorageState from "use-local-storage-state";
 
 function FormName() {
-  /*
-      <p><BasicForm/></p>
-  <FirebaseIntegration/>
-    */
   const [name, setName] = useLocalStorageState("name");
   const maxVal = 18;
   const [val, setVal] = useState("");

@@ -1,10 +1,7 @@
 import Sheet from "react-modal-sheet";
 import { QrReader } from "./CustomQrReaderZxing";
-import { useContext, useState } from "react";
-import { QRCodeFormContext } from "./QRCodeFormContext";
+import { useState } from "react";
 import { MainButton } from "./MainButton";
-// import for some reason not working :/
-//import { FormSwitch } from "./FormSwitch";
 import Send from "./Send";
 import InfoText from "./InfoText";
 import FormTransportation from "../Components/FormTransportation";
@@ -14,14 +11,12 @@ import FormName from "./FormName";
 import { DisplayMode } from "./DisplayMode.jsx";
 
 export default function BottomDrawer() {
-  const QRCodeContext = useContext(QRCodeFormContext);
   const [isOpen, setOpen] = useState(true);
   const [formContent, setFormContent] = useState("0");
   const [initialSnapP, setInitialSnapP] = useState(1);
   const [displayMode, setDisplayMode] = useState(DisplayMode.displayForm);
 
   function onFormChange(content) {
-    console.log(content);
     setDisplayMode(DisplayMode.displayForm);
     setOpen(true);
     if (content == "Transportation") {
@@ -39,23 +34,17 @@ export default function BottomDrawer() {
 
   function manageDisplayMode(val) {
     setDisplayMode(val);
-    console.log(val);
     setInitialSnapP(val == DisplayMode.idle ? 4 : 1);
-    console.log(initialSnapP);
     setOpen(false);
     setOpen(true);
   }
   return (
     <>
-      {console.log(displayMode)}
       <Sheet
         snapPoints={[0.8, 0.6, 0.3, 0.1, 0]}
         initialSnap={initialSnapP}
         isOpen={
           displayMode != DisplayMode.idle && displayMode != DisplayMode.closed
-        }
-        onSnap={(snapIndex) =>
-          console.log("> Current snap point index:", snapIndex)
         }
         onClose={() => {
           if (displayMode == DisplayMode.displayForm) {
@@ -88,7 +77,6 @@ export default function BottomDrawer() {
 }
 
 const FormSwitch = (test) => {
-  console.log(test.data);
   var text = test.data + "";
   switch (text) {
     case "Transportation":
